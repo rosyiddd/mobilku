@@ -16,6 +16,9 @@ app.use(express.urlencoded());
 app.use(helmet());
 app.use(morgan("common"));
 app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/", (req, res) => {
+  res.status(200).json({ server: "is running" })
+});
 app.use("/api/users", userRoute);
 
 mongoose.connect(
